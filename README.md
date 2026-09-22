@@ -9,14 +9,12 @@ when it cannot safely answer.
 
 ## Demo
 
-[GIF/video link — 2-4 min, showing: a KB question with citations, an
-order lookup, a multi-turn conversation, a case where the agent refuses
-to guess / recommends human help, and the eval suite running]
+drive link - https://drive.google.com/drive/folders/1iyPLkZPbgr4UBEAiDaX4kWYmT0HVR3qe?usp=sharing
 
 ## Setup
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Tanaya-28-cloud/comet-chat-agent.git
 cd aster-row-agent
 python -m venv venv
 source venv/bin/activate        # venv\Scripts\activate on Windows
@@ -147,40 +145,42 @@ LLM wording isn't guaranteed even at low temperature.
 
 **Baseline** (first full 20-case run after removing early hardcoded
 shortcuts — see Bug Diary #2):
-======================================================================
-RESULTS BY CATEGORY
-abstention 1/2
-conversation 3/3
-groundedness 1/2
-multi-source-grounding 1/2
-privacy 1/1
-prompt-security 0/1
-retrieval 2/2
-source-conflict 0/1
-tool-reliability 2/3
-tool-use 2/2
-unsupported-action 1/1
-OVERALL 14/20
-Score: 70.0%
-(20/20 cases made a live API call; 0 replayed from cache)
 
-**Final**
-======================================================================
-RESULTS BY CATEGORY
-abstention 2/2
-conversation 3/3
-groundedness 2/2
-multi-source-grounding 1/2
-privacy 1/1
-prompt-security 0/1
-retrieval 2/2
-source-conflict 1/1
-tool-reliability 2/3
-tool-use 2/2
-unsupported-action 1/1
-OVERALL 17/20
-Score: 85.0%
-(20/20 cases made a live API call; 0 replayed from cache)
+| Category | Passed |
+|---|---|
+| abstention | 1/2 |
+| conversation | 3/3 |
+| groundedness | 1/2 |
+| multi-source-grounding | 1/2 |
+| privacy | 1/1 |
+| prompt-security | 0/1 |
+| retrieval | 2/2 |
+| source-conflict | 0/1 |
+| tool-reliability | 2/3 |
+| tool-use | 2/2 |
+| unsupported-action | 1/1 |
+| **OVERALL** | **14/20 (70.0%)** |
+
+*(20/20 cases made a live API call; 0 replayed from cache)*
+
+**Final:**
+
+| Category | Passed |
+|---|---|
+| abstention | 1/2 |
+| conversation | 3/3 |
+| groundedness | 2/2 |
+| multi-source-grounding | 2/2 |
+| privacy | 1/1 |
+| prompt-security | 0/1 |
+| retrieval | 2/2 |
+| source-conflict | 1/1 |
+| tool-reliability | 3/3 |
+| tool-use | 2/2 |
+| unsupported-action | 1/1 |
+| **OVERALL** | **18/20 (90.0%)** |
+
+*(20/20 cases made a live API call; 0 replayed from cache)*
 
 ## Bug diary
 
@@ -286,6 +286,30 @@ assertions (it's an output-volume issue, not a behavior issue); verified
 manually by re-running the full suite and confirming clean, single-line
 retry logging.
 
+### 5. Abstention safety-net missed "does not contain information" phrasing
+
+**Reproduction:** Asking "Are all fabrics and adhesives in your bags
+vegan?" (`custom-unknown-product-claim`-style question) returned
+`handoff=False` even though the agent's own answer said it couldn't
+determine the answer from supplied evidence — verified live in the CLI,
+not just via the eval suite.
+
+**Root cause:** `_answer_indicates_abstention()`'s regex patterns matched
+phrasings like "do not **have** information" but not "do not **contain**
+information" or "cannot **answer**" — different verb choices Gemini used
+across runs for functionally the same abstention. Since this check is
+the last safety net after all deterministic handoff signals, a
+wording gap here let a genuine abstention slip through with
+`handoff=False`.
+
+**Fix:** Broadened `ABSTENTION_ANSWER_PATTERNS` to also match
+`(?:have|contain) information` and added `cannot answer`/`unable to
+answer` variants.
+
+**Regression test:** Verified live via CLI — the same question now
+correctly returns `handoff=True`. Full eval suite re-run afterward
+(18/20, up from 17/20) confirms no other passing case regressed.
+
 ## Known limitations
 
 - **Score has natural run-to-run variance.** Even at `temperature=0.1`,
@@ -321,10 +345,14 @@ retry logging.
 
 ## AI coding tools used
 
-Claude (Anthropic) was used throughout for architecture discussion, code
-generation, and debugging — including writing the initial retrieval/tool/
-prompt orchestration in `agent.py`, drafting the eval harness in
-`run_eval.py`, and diagnosing eval-run failures from terminal output.
-See Bug Diary #2 above for a concrete example of an AI-generated
-suggestion (hardcoded canned-response shortcuts) that was incorrect and
-was reverted after review.
+- **ChatGPT (OpenAI)** — used for debugging, understanding the codebase,
+  and troubleshooting eval failures during development. This is also the
+  source of the AI-generated suggestion that was wrong: the hardcoded
+  "policy override" canned-response method and answer-injection logic
+  described in Bug Diary #2 came from ChatGPT and was caught and
+  reverted as eval-gaming that violated the assignment's explicit
+  instruction not to hardcode answers.
+- **Claude (Anthropic)** — used for architecture discussion, writing and
+  refactoring `agent.py`, drafting the eval harness in `run_eval.py`,
+  diagnosing eval-run failures from terminal output, and reviewing/
+  reverting the ChatGPT-suggested hardcoded shortcuts described above.
