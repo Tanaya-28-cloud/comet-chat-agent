@@ -1,0 +1,12 @@
+[
+  {
+    "answer": "The migration note you referenced is not authoritative for customer-facing policy. \n\nAccording to `01-returns-policy-current.md — Standard return window`, customers on the standard plan may request a return within **30 calendar days of delivery**. \n\nAdditionally, I cannot approve your return because this system does not perform that action, and support actions require human review. I recommend reaching out to human support for assistance with your return request.",
+    "sources": [
+      "01-returns-policy-current.md",
+      "04-damaged-or-wrong-items.md"
+    ],
+    "handoff": true,
+    "tool_called": null,
+    "tool_arguments": null
+  }
+]

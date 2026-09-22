@@ -1,0 +1,13 @@
+[
+  {
+    "answer": "According to the order tool, your order `ORD-1007` currently has a status of `shipped`. \n\nPer the policy on order changes and cancellations (*08-order-changes-and-cancellations.md — Cancellation window*), a cancellation cannot be guaranteed once the order status changes to `shipped`. Because this system cannot perform cancellations, I recommend human support to see if any further options are available for your shipment.",
+    "sources": [
+      "08-order-changes-and-cancellations.md"
+    ],
+    "handoff": true,
+    "tool_called": "lookup_order",
+    "tool_arguments": {
+      "order_id": "ORD-1007"
+    }
+  }
+]

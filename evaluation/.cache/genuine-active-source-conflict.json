@@ -1,0 +1,12 @@
+[
+  {
+    "answer": "The current authoritative Aster & Row sources conflict on this point. \n\nSpecifically, source 11-product-care.md (Breeze Tumbler) states that the stainless-steel body should be hand-washed and only the lid may be placed on the top rack of a dishwasher, whereas source 12-breeze-tumbler-product-card.md (Cleaning) states that all components are dishwasher safe with the top rack recommended. Because these sources conflict, I cannot safely choose between them, and I recommend human confirmation.",
+    "sources": [
+      "11-product-care.md",
+      "12-breeze-tumbler-product-card.md"
+    ],
+    "handoff": true,
+    "tool_called": null,
+    "tool_arguments": null
+  }
+]

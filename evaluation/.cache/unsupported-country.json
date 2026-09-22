@@ -1,0 +1,13 @@
+[
+  {
+    "answer": "We cannot ship to Germany at this time. Aster & Row currently ships internationally only to Canada (Source: `06-international-shipping.md` — Supported destinations).",
+    "sources": [
+      "01-returns-policy-current.md",
+      "05-domestic-shipping.md",
+      "06-international-shipping.md"
+    ],
+    "handoff": false,
+    "tool_called": null,
+    "tool_arguments": null
+  }
+]

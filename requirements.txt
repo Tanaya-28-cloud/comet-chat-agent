@@ -1,0 +1,6 @@
+pyyaml
+numpy
+sentence-transformers
+google-genai
+python-dotenv
+pytest

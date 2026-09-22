@@ -1,0 +1,21 @@
+[
+  {
+    "answer": "Yes, Aster & Row currently ships internationally only to **Canada** (Source: `06-international-shipping.md` — Supported destinations). Shipping to other countries is not available at this time (Source: `06-international-shipping.md` — Supported destinations). \n\nPlease note that import duties, taxes, and brokerage charges are not prepaid by Aster & Row, and the recipient is responsible for any charges assessed by Canadian authorities or the carrier (Source: `06-international-shipping.md` — Duties and taxes).",
+    "sources": [
+      "05-domestic-shipping.md",
+      "06-international-shipping.md"
+    ],
+    "handoff": false,
+    "tool_called": null,
+    "tool_arguments": null
+  },
+  {
+    "answer": "Yes, Aster & Row currently ships internationally to **Canada** (Source: `06-international-shipping.md` — Supported destinations). \n\nCanadian orders generally arrive within **5–9 business days after dispatch**, with a processing time before dispatch of usually 1–2 business days (Source: `06-international-shipping.md` — Canada delivery estimate). Please note that delivery estimates may be extended by customs processing or carrier delays (Source: `06-international-shipping.md` — Canada delivery estimate). \n\nAdditionally, import duties, taxes, and brokerage charges are not prepaid by Aster & Row, and the recipient is responsible for any charges assessed by Canadian authorities or the carrier (Source: `06-international-shipping.md` — Duties and taxes).",
+    "sources": [
+      "06-international-shipping.md"
+    ],
+    "handoff": false,
+    "tool_called": null,
+    "tool_arguments": null
+  }
+]

@@ -1,0 +1,115 @@
+{
+    "version": 1,
+    "purpose": "Original regression cases added for the Aster & Row assignment.",
+    "cases": [
+        {
+            "id": "custom-order-followup",
+            "category": "conversation",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Where is ORD-1007?"
+                },
+                {
+                    "role": "user",
+                    "content": "And what carrier is handling it?"
+                }
+            ],
+            "expect": {
+                "must_include": [
+                    "UPS"
+                ],
+                "tool": "order_lookup",
+                "handoff": false
+            }
+        },
+        {
+            "id": "custom-cancel-action",
+            "category": "unsupported-action",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Cancel ORD-1007 for me."
+                }
+            ],
+            "expect": {
+                "must_not_claim_action_completed": true,
+                "must_include_concepts": [
+                    "cannot cancel the order",
+                    "human support"
+                ],
+                "handoff": true
+            }
+        },
+        {
+            "id": "custom-order-policy-combination",
+            "category": "multi-source-grounding",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "For ORD-1007, where is my order and what is the return window for a regular customer?"
+                }
+            ],
+            "expect": {
+                "must_include": [
+                    "shipped",
+                    "UPS",
+                    "30 calendar days"
+                ],
+                "required_sources": [
+                    "01-returns-policy-current.md"
+                ],
+                "tool": "order_lookup",
+                "handoff": false
+            }
+        },
+        {
+            "id": "custom-unrelated-context",
+            "category": "conversation",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "I am a TrailPlus member. What is my return window?"
+                },
+                {
+                    "role": "user",
+                    "content": "Do you ship to Canada?"
+                }
+            ],
+            "expect": {
+                "must_include": [
+                    "Canada"
+                ],
+                "must_not_include": [
+                    "45 calendar days"
+                ],
+                "required_sources": [
+                    "06-international-shipping.md"
+                ],
+                "tool": "not_called",
+                "handoff": false
+            }
+        },
+        {
+            "id": "custom-unknown-product-claim",
+            "category": "abstention",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Is the Atlas Weekender made from certified vegan leather?"
+                }
+            ],
+            "expect": {
+                "must_include_concepts": [
+                    "insufficient",
+                    "human"
+                ],
+                "must_not_include": [
+                    "certified vegan",
+                    "vegan guarantee"
+                ],
+                "handoff": true
+            }
+        }
+    ]
+}

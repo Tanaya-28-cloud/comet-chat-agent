@@ -1,0 +1,58 @@
+{
+  "dataset_name": "test fixture",
+  "snapshot_at": "2026-08-15T12:00:00Z",
+  "orders": [
+    {
+      "order_id": "ORD-2001",
+      "customer": {"name": "Test Person", "email": "t@example.test", "shipping_address": "123 St"},
+      "membership_tier": "standard",
+      "items": [{"sku": "X", "name": "Test Item", "quantity": 1, "final_sale": false}],
+      "placed_at": "2026-08-15T11:50:00Z",
+      "status": "pending",
+      "status_updated_at": "2026-08-15T11:50:00Z",
+      "shipped_at": null, "delivered_at": null, "carrier": null,
+      "tracking_number": null, "estimated_delivery": null,
+      "customer_safe_message": "received",
+      "internal": {"risk_score": 5, "warehouse_note": "secret note", "support_tags": []}
+    },
+    {
+      "order_id": "ORD-2002",
+      "customer": {"name": "Test Person 2", "email": "t2@example.test", "shipping_address": "456 St"},
+      "membership_tier": "standard",
+      "items": [{"sku": "Y", "name": "Test Item 2", "quantity": 1, "final_sale": false}],
+      "placed_at": "2026-08-15T11:00:00Z",
+      "status": "pending",
+      "status_updated_at": "2026-08-15T11:00:00Z",
+      "shipped_at": null, "delivered_at": null, "carrier": null,
+      "tracking_number": null, "estimated_delivery": null,
+      "customer_safe_message": "received",
+      "internal": {"risk_score": 5, "warehouse_note": "secret note 2", "support_tags": []}
+    },
+    {
+      "order_id": "ORD-2003",
+      "customer": {"name": "Test Person 3", "email": "t3@example.test", "shipping_address": "789 St"},
+      "membership_tier": "standard",
+      "items": [{"sku": "Z", "name": "Test Item 3", "quantity": 1, "final_sale": false}],
+      "placed_at": "2026-08-09T13:30:00Z",
+      "status": "cancelled",
+      "status_updated_at": "2026-08-09T13:48:00Z",
+      "shipped_at": null, "delivered_at": null,
+      "carrier": "UPS", "tracking_number": "1Z999", "estimated_delivery": "2026-08-16",
+      "customer_safe_message": "cancelled",
+      "internal": {"risk_score": 11, "warehouse_note": "stale label", "support_tags": ["cancelled"]}
+    },
+    {
+      "order_id": "ORD-2004",
+      "customer": {"name": "Test Person 4", "email": "t4@example.test", "shipping_address": "101 St"},
+      "membership_tier": "standard",
+      "items": [{"sku": "W", "name": "Test Item 4", "quantity": 1, "final_sale": false}],
+      "placed_at": "2026-08-14T19:25:00Z",
+      "status": "exception",
+      "status_updated_at": "2026-08-15T07:30:00Z",
+      "shipped_at": null, "delivered_at": null, "carrier": null,
+      "tracking_number": null, "estimated_delivery": null,
+      "customer_safe_message": "under review",
+      "internal": {"risk_score": 90, "warehouse_note": "flagged", "support_tags": ["review"]}
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "answer": "Your order (ORD-1004) has a status of **cancelled**, so it will not be shipped or arrive.",
+    "sources": [],
+    "handoff": false,
+    "tool_called": "lookup_order",
+    "tool_arguments": {
+      "order_id": "ORD-1004"
+    }
+  }
+]

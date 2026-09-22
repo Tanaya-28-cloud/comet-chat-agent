@@ -1,0 +1,14 @@
+[
+  {
+    "answer": "You are not completely out of luck! According to `03-final-sale-and-promotions.md` under **Damaged or incorrect items** and `01-returns-policy-current.md` under **Exclusions and exceptions**, the final-sale restriction only prevents change-of-mind returns and does not remove your right to report an item that arrived damaged, defective, or incorrect. \n\nAdditionally, as noted in `04-damaged-or-wrong-items.md` under **Final-sale items**, final-sale items remain eligible for review when they arrive damaged, defective, or incorrect. Please note that a refund or replacement cannot be promised before a human review is completed. Because review is required, I recommend reaching out to human support so your case can be reviewed.",
+    "sources": [
+      "01-returns-policy-current.md",
+      "03-final-sale-and-promotions.md",
+      "04-damaged-or-wrong-items.md",
+      "11-product-care.md"
+    ],
+    "handoff": true,
+    "tool_called": null,
+    "tool_arguments": null
+  }
+]

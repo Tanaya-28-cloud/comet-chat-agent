@@ -1,0 +1,11 @@
+[
+  {
+    "answer": "Your order ORD-1011 has a `shipped` status (it has shipped with Canada Post). A delivery estimate is not currently available.",
+    "sources": [],
+    "handoff": false,
+    "tool_called": "lookup_order",
+    "tool_arguments": {
+      "order_id": "ORD-1011"
+    }
+  }
+]
